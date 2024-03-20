@@ -1,7 +1,7 @@
 $(function () {
     obtenerVendedores();
   
-    // Crear formas de pago
+    // Crear vendedores
     $('#crearVendedor').submit(e => {
       e.preventDefault();
       const postData = {

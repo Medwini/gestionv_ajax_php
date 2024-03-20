@@ -12,6 +12,8 @@ $(function() {
       $('#crearVendedor').hide();
       $('#crearProducto').hide();
       $('#cont-config').hide();
+      $('#cont-clientesM').hide();
+      $('#crearCliente').hide();
    }
 
 
@@ -87,6 +89,25 @@ $(function() {
       $('#btnc-Prod').show();
 
       $('#crearProducto').trigger('reset');
+   });
+   
+
+   // Mostrar modal de Clientes
+
+   $('#btn-cliente').on('click', function () {
+      $('#cont-clientesM').show();
+   });
+
+   $('#btnc-Cliente').on('click', function(){
+      $('#crearCliente').show();
+      $('#btnc-Cliente').hide();
+   });
+
+   $(document).on('click', '.btn-cancel',(e) =>{
+      $('#crearCliente').hide();
+      $('#btnc-Cliente').show();
+
+      $('#crearCliente').trigger('reset');
    });
    
 

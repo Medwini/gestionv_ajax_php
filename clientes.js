@@ -1,5 +1,5 @@
 $(function () {
-    // obtenerClientes();
+    obtenerClientes();
 
     var editar =false;
   
@@ -22,7 +22,7 @@ $(function () {
       obtenerVendedores();
     });
   
-    // Obtener todos los clientes
+    // Busqueda de clientes
     $('#buscarCliente').submit(e => {
         e.preventDefault();
         let busquedaCed =  $(this)[0].activeElement.parentNode.childNodes[3].value;
@@ -42,7 +42,7 @@ $(function () {
             console.log(clientes.length);
             if (clientes.length > 1){
                 alert('Hay mas de un cliente con el mismo número de identidad, a continuación se presentarán, seleccione el cliente que requiera presionando el botón aceptar.');
-                clientes.every(cliente => {
+                var c = clientes.every(cliente => {
                     let select= confirm(`Identificación: ${cliente.cedula} \nCliente: ${cliente.nombre}`);
                     if(select){
                         var template = '';
@@ -51,7 +51,7 @@ $(function () {
                             <input type="text" id="cedula-detV" class="form-control" value="${cliente.cedula}">
                             <input type="text" id="nombre-detV" class="form-control" disabled value="${cliente.nombre}">
                             <button id="btnb-cliente" type="submit" class="btn btn-outline-success" style="width: 20%;">Buscar</button>
-                            <button type="button" id="btn-Cliente" class="btn btn-outline-success" style="width: 20%;">Nuevo</button>
+                            <button id="btn-cliente" type="button" class="btn btn-outline-info" style="width: 20%;">Nuevo</button>
                             `
 
                         $('#busc-Cliente').html(template);
@@ -60,17 +60,42 @@ $(function () {
                         return true;
                     }
                 });
+                if (c == true ){
+                    alert('No seleccionó cliente.');
+                    var template = '';
+                        template += `
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Cliente:</span>
+                        <input type="text" id="cedula-detV" class="form-control" placeholder="V- | G- | J-">
+                        <input type="text" id="nombre-detV" class="form-control" disabled placeholder="Nombre...">
+                        <button id="btnb-cliente" type="submit" class="btn btn-outline-success" style="width: 20%;">Buscar</button>
+                        <button id="btn-cliente" type="button" class="btn btn-outline-info" style="width: 20%;">Nuevo</button>
+                            `
+
+                        $('#busc-Cliente').html(template);
+                }
+
 
             }else if (clientes.length < 1){
                 alert('No existen datos de ese cliente.');
+                var template = '';
+                        template += `
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Cliente:</span>
+                        <input type="text" id="cedula-detV" class="form-control" placeholder="V- | G- | J-">
+                        <input type="text" id="nombre-detV" class="form-control" disabled placeholder="Nombre...">
+                        <button id="btnb-cliente" type="submit" class="btn btn-outline-success" style="width: 20%;">Buscar</button>
+                        <button id="btn-cliente" type="button" class="btn btn-outline-info" style="width: 20%;">Nuevo</button>
+                            `
+
+                        $('#busc-Cliente').html(template);
             }else{
                 let template = '';
                 clientes.forEach(cliente => {
                 template += `
-                    <span class="input-group-text" id="inputGroup-sizing-sm">Cliente: ${cliente.idcliente}</span>
-                    <p id="cedula-detV" class="form-control">${cliente.cedula}</p>
-                    <p id="nombre-detV" class="form-control">${cliente.nombre}</p>
-                    <button type="button" id="btn-Cliente" class="btn btn-outline-success" style="width: 20%;">Nuevo</button>
+                  <span class="input-group-text" id="inputGroup-sizing-sm">Cliente: ${cliente.idcliente}</span>
+                  <input type="text" id="cedula-detV" class="form-control" value="${cliente.cedula}">
+                  <input type="text" id="nombre-detV" class="form-control" disabled value="${cliente.nombre}">
+                  <button id="btnb-cliente" type="submit" class="btn btn-outline-success" style="width: 20%;">Buscar</button>
+                  <button id="btn-cliente" type="button" class="btn btn-outline-info" style="width: 20%;">Nuevo</button>
                     `
                 });
                 $('#busc-Cliente').html(template);
@@ -78,6 +103,53 @@ $(function () {
             
         });
     }
+  
+    // Crear clientes
+    $('#crearCliente').submit(e => {
+      e.preventDefault();
+      const postData = {
+        cedula: $('#ident_cliente').val(),
+        nombre: $('#nombre_cliente').val(),
+        telefono: $('#tel_cliente').val(),
+        direccion: $('#dir_cliente').val(),
+      };
+      $.post('db_php/Clientes/crearCliente.php', postData, (response) => {
+        alert(response);
+        $('#crearCliente').trigger('reset');
+  
+      });
+      $('#crearCliente').hide();
+      $('#btnc-Cliente').show();
+      obtenerClientes();
+    });
+  
+    // Obtener todos los clientes
+    function obtenerClientes() {
+      $.ajax({
+        url: 'db_php/Clientes/consultaCliente.php',
+        type: 'GET',
+        success: function (response) {
+          const clientes = JSON.parse(response);
+          let template = '';
+          clientes.forEach(cliente => {
+            template += `
+                  <tr>
+                    <th scope="row">${cliente.idcliente}</th>
+                    <td>${cliente.cedula}</td>
+                    <td>${cliente.nombre}</td>
+                    <td>${cliente.telefono}</td>
+                    <td>${cliente.direccion}</td>
+                    <td>
+                      <button FpId="${cliente.idcliente}" class="btn btn-info btn-sm">Editar</button>
+                      <button FpId="${cliente.idcliente}" class="btn btn-danger btn-sm">Eliminar</button>
+                    </td>
+                  </tr>
+                  `
+          });
+          $('#body-tCliente').html(template);
+        }
+      });
+    };
 
   
   });
