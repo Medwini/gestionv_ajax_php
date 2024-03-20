@@ -1,0 +1,79 @@
+:root{
+    --black:#000;
+    --white:white;
+    --bg_modal:#6e6d6d93;
+    --principal:#0085ad;
+}
+
+.center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.center-v{
+    display: flex;
+    align-items: center;
+}
+
+.align-h{
+    display: flex;
+    flex-direction: row;
+}
+
+.smletters{
+    font-size: 12px;
+}
+
+.mletters{
+    font-size: 13px;
+}
+
+.gmletters{
+    font-size: 15px;
+}
+
+.spacingb{
+    display: flex;
+    justify-content: space-between;
+}
+
+/* BOTONES */
+
+.btn-nuevo{
+    width: 100%;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid var(--white);
+    background-color: var(--principal);
+    color: var(--white);
+}
+
+/* ESTILOS MODAL FORMA PAGO */
+#cont-formaPagoM{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--bg_modal);
+}
+
+.vtn-modal{
+    width: 60%;
+    /* height: 60%; */
+}
+
+
+#tFormasPago{
+    overflow: auto;
+    height: 25vh;
+}
+
+form{
+    padding: 3px;
+    background-color: var(--white);
+    border-top: 1px solid var(--principal);
+    border-bottom: 1px solid var(--principal);
+}

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistema de Ventas - Boom Solutions</title>
+
+  <!-- Estilos -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+
+  <button id="btn-formaPago" class="">Formas de pago</button>
+  <button id="btn-config" class="">Configuraciones</button>
+
+  <!-- Ficha de formas de pago -->
+  <div id="cont-formaPagoM" class="center-v">
+    <div class="container text-bg-light p-3 vtn-modal">
+      <h3 class="mletters center">Pagos</h3>
+      <!-- <button id="btn-nuevo" class="btn-nuevo">Crear nueva</button>
+      <form id="crearFormaPago">
+        <div id="cont-nuevo" class="input-group center my-1">
+          <input type="text" id="descripcion_formaPago" class="form-control" placeholder="Descripción..."
+            aria-label="Nombre de la forma de pago">
+          <button class="btn btn-outline-secondary" type="submit">Guardar</button>
+          <button class="btn btn-outline-secondary btn-cancel" type="button">Cancelar</button>
+        </div> -->
+        <!-- <div id="cont-nuevo" class="input-group center my-1">
+          <input type="number" id="tasa_formaPago" class="form-control" min="1" step="0.001" placeholder="Monto..."
+            aria-label="tasa de la forma de pago">
+        </div>
+      </form> -->
+
+      <div class="input-group mb-3 my-2">
+        <label class="input-group-text" for="inputGroupSelect01">Formas de pago:</label>
+        <select class="form-select forma-pago" id="inputGroupSelect01">
+          <option selected>Choose...</option>
+        </select>
+      </div>
+
+      <div id="tFormasPago" class="mb-2">
+        <table class="table table-hover mletters">
+          <thead>
+            <tr>
+              <th scope="col">Id</th>
+              <th scope="col">Forma de Pago</th>
+              <th scope="col">Tasa</th>
+              <th scope="col">Cantidad</th>
+              <th scope="col">Observación</th>
+            </tr>
+          </thead>
+          <tbody class="table-group-divider">
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+              <td>@mdo</td>
+            </tr>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+              <td>@mdo</td>
+            </tr>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+              <td>@mdo</td>
+            </tr>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+              <td>@mdo</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+      <div class="align-h">
+        <div class="card smletters mx-1" style="width: 10rem;">
+          <div class="card-header fw-bold">
+            Pago:
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><span>Bs: </span></li>
+            <li class="list-group-item"><span>USD: </span></li>
+          </ul>
+        </div>
+        <div class="card smletters mx-1" style="width: 10rem;">
+          <div class="card-header fw-bold">
+            Total:
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><span>Bs: </span></li>
+            <li class="list-group-item"><span>USD: </span></li>
+          </ul>
+        </div>
+        <div class="btn-group-vertical mx-1" role="group" style="width: 40%;">
+          <button type="button" class="btn btn-outline-secondary close-modal">Cancelar</button>
+          <button type="button" class="btn btn-outline-success">Procesar</button>
+        </div>
+
+      </div>
+
+      
+    </div>
+  </div>
+
+  <div id="cont-config" class="center-v">
+    <div class="container text-bg-light p-3 vtn-modal">
+      <h3 class="gmletters center">Configuraciones</h3>
+      <div>
+        <button id="act-crudProd">Productos</button>
+        <button id="act-crudVend">Vendedores</button>
+        <button id="act-crudFP">Formas de pago</button>
+      </div>
+
+      <div id="crudProd" class="container p-3">Hola prod</div>
+
+      <div id="crudVend" class="container p-3">
+        <button id="btnc-Vend" class="btn-nuevo my-2">Crear nuevo</button>
+        <form id="crearVendedor" class="my-2">
+          <div class="input-group center my-1">
+            <span class="input-group-text" id="inputGroup-sizing-sm">Identificación:</span>
+            <input type="text" id="ident_vend" required class="form-control" placeholder="Agregue V-..."
+              aria-label="Nombre de la forma de pago">
+          </div>
+          <div class="input-group center my-1">
+            <span class="input-group-text" id="inputGroup-sizing-sm">Nombre:</span>
+            <input type="text" id="nombre_vend" required class="form-control" placeholder="...">
+          </div>
+          <div class="input-group center my-1">
+            <span class="input-group-text" id="inputGroup-sizing-sm">Teléfono:</span>
+            <input type="text" id="tel_vend" class="form-control" placeholder="(+58) 416... | 0416...">
+          </div>
+          <div class="input-group">
+            <span class="input-group-text">Dirección:</span>
+            <textarea id="dir_vend" class="form-control" aria-label="Direccion"></textarea>
+          </div>
+          <div class="center spacingb my-2">
+            <button class="btn btn-success" type="submit">Guardar</button>
+            <button class="btn btn-secondary btn-cancel" type="button">Cancelar</button>
+          </div>
+        </form>
+
+        <table id="listVendedores"  class="table mletters">
+          <thead>
+            <tr>
+              <th scope="col">Id</th>
+              <th scope="col">Identificación</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="body-tVend" class="table-group-divider">
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>
+                <button class="btn btn-info btn-sm">Editar</button>
+                <button class="btn btn-danger btn-sm">Eliminar</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div id="crudFP" class="container p-3">
+        <button id="btn-nuevo" class="btn-nuevo my-2">Crear nueva</button>
+        <form id="crearFormaPago" class="my-2">
+          <div class="input-group center my-1">
+            <span class="input-group-text" id="inputGroup-sizing-sm">Descripción</span>
+            <input type="text" id="descripcion_formaPago" required class="form-control" placeholder="Efectivo..."
+              aria-label="Nombre de la forma de pago">
+            <button class="btn btn-outline-success" type="submit">Guardar</button>
+            <button class="btn btn-outline-secondary btn-cancel" type="button">Cancelar</button>
+          </div>
+          <div class="input-group center my-1">
+            <span class="input-group-text" id="inputGroup-sizing-sm">Tasa:</span>
+            <input type="number" id="tasa_formaPago" required class="form-control" min="1" step="0.001" placeholder="1.00..."
+              aria-label="tasa de la forma de pago">
+          </div>
+        </form>
+
+        <table id="listFormaPago" class="table mletters">
+          <thead>
+            <tr>
+              <th scope="col">Id</th>
+              <th scope="col">Descripción</th>
+              <th scope="col">Tasa</th>
+              <th scope="col">Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="body-tFP" class="table-group-divider">
+            
+          </tbody>
+        </table>
+      </div>
+      
+    </div>
+  </div>
+
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script src="main.js"></script>
+  <script src="formasPago.js"></script>
+</body>
+
+</html>
