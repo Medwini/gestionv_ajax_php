@@ -1,0 +1,30 @@
+CREATE DATABASE gestion_ventas
+
+USE gestion_ventas;
+CREATE TABLE IF NOT EXISTS forma_pago(
+    idforma_pago INT NOT NULL AUTO_INCREMENT, 
+    PRIMARY KEY (idforma_pago),
+    descripcion VARCHAR(100) NOT NULL,
+    tasa DECIMAL (10,3)
+)
+
+CREATE TABLE IF NOT EXISTS vendedores(
+    idvendedor INT NOT NULL AUTO_INCREMENT, 
+    PRIMARY KEY (idvendedor),
+    cedula VARCHAR(50) NOT NULL,
+    nombre VARCHAR(100) NOT NULL,
+    telefono VARCHAR(100),
+    direccion VARCHAR(250)
+)
+
+CREATE TABLE IF NOT EXISTS productos(
+    idproducto INT NOT NULL AUTO_INCREMENT, 
+    PRIMARY KEY (idproducto),
+    codbarra VARCHAR(50) NOT NULL,
+	descripcion VARCHAR(150) NOT NULL,
+    costo_base DECIMAL(10,3) NOT NULL,
+    rentabilidad DECIMAL(10,2) NOT NULL,
+    precio_base DECIMAL(10,3) NOT NULL,
+    cantidad DECIMAL(10,2) NOT NULL,
+    descuento DECIMAL(10,2) NOT NULL
+)
