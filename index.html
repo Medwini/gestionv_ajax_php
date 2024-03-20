@@ -20,7 +20,7 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item mx-2">
-              <button id="btn-navVend" class="btn-nav">Vendedor</button>
+              <button id="btn-navVend" class="btn-nav">dsd</button>
             </li>
             <li class="nav-item mx-2">
               <button id="btn-navEst" class="btn-nav">Estadísticas</button>
@@ -254,7 +254,7 @@
       
     </div>
   </div>
-
+  <!-- Ficha clientes -->
   <div id="cont-clientesM" class="center-v cont-modal">
     <div class="container text-bg-light p-3 vtn-modal">
       <h3 class="mletters center">Clientes</h3>
@@ -312,7 +312,7 @@
       
     </div>
   </div>
-
+  <!-- Ficha configuraciones -->
   <div id="cont-config" class="center-v cont-modal">
     <div class="container text-bg-light p-3 vtn-modal">
       <h3 class="gmletters center">Configuraciones</h3>
@@ -477,6 +477,21 @@
     </div>
   </div>
 
+  <div id="cont-selVendedorM" class="center-v cont-modal">
+    <div class="container text-bg-light p-3 vtn-modal">
+      <h3 class="mletters center">Clientes</h3>
+      <div id="selVendedor" class="container p-3">
+        <button class="close-modal">Cerrar</button>
+        <div class="input-group mb-3 my-2">
+          <label class="input-group-text" for="inputSelectVendedor">Vendedores:</label>
+          <select class="form-select forma-pago-2" id="inputSelectVendedor">
+            <option selected>Choose...</option>
+          </select>
+        </div>   
+      </div>   
+    </div>
+  </div>
+
 
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"
     integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
@@ -485,6 +500,7 @@
   <script src="vendedores.js"></script>
   <script src="productos.js"></script>
   <script src="clientes.js"></script>
+  <script src="ventas.js"></script>
 </body>
 
 </html>

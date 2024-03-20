@@ -15,6 +15,7 @@ $(function() {
       $('#cont-clientesM').hide();
       $('#crearCliente').hide();
       $('#cont-busqProductosM').hide();
+      $('#cont-selVendedorM').hide();
    }
 
 
@@ -113,16 +114,30 @@ $(function() {
 
       // Mostrar modal de buscar productos
 
-      $('#btn-buscarProducto').on('click', function () {
-         $('#cont-busqProductosM').show();
-      });
+   $('#btn-buscarProducto').on('click', function () {
+     $('#cont-busqProductosM').show();
+   });
    
-      $(document).on('click', '.btn-cancel',(e) =>{
-         $('#crearCliente').hide();
-         $('#btnc-Cliente').show();
+   $(document).on('click', '.btn-cancel',(e) =>{
+      $('#crearCliente').hide();
+      $('#btnc-Cliente').show();
+      $('#crearCliente').trigger('reset');
+   });
+
    
-         $('#crearCliente').trigger('reset');
-      });
+
+   $('#btn-navVend').on('click', function () {
+      $('#cont-selVendedorM').show();
+    });
+    
+    $(document).on('click', '.btn-cancel',(e) =>{
+       $('#crearCliente').hide();
+       $('#btnc-Cliente').show();
+       $('#crearCliente').trigger('reset');
+    });
+ 
+
+
    
 
 });

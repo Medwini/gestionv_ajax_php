@@ -37,3 +37,15 @@ CREATE TABLE IF NOT EXISTS clientes(
     telefono VARCHAR(100),
     direccion VARCHAR(250)
 )
+
+CREATE TABLE IF NOT EXISTS ventas_cab(
+    idventa_cab INT NOT NULL AUTO_INCREMENT, 
+    PRIMARY KEY (idventa_cab),
+    idcliente INT NOT NULL,
+    FOREIGN KEY (idcliente) REFERENCES clientes(idcliente),
+    monto_total DECIMAL (10,3),
+    idvendedor INT NOT NULL,
+    FOREIGN KEY (idvendedor) REFERENCES vendedores(idvendedor),
+    fecha_venta DATETIME NOT NULL,
+    estado INT NOT NULL
+)

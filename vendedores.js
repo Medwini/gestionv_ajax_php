@@ -1,5 +1,7 @@
 $(function () {
     obtenerVendedores();
+    var vend = document.getElementById('btn-navVend');
+    vend.innerText = 'Vendedor';
   
     // Crear vendedores
     $('#crearVendedor').submit(e => {
@@ -47,6 +49,43 @@ $(function () {
         }
       });
     };
+    obtenerVendedor();
 
+    // Modal de selección de vendedor
+    function obtenerVendedor() {
+      $.ajax({
+        url: 'db_php/Vendedores/consultaVendedor.php',
+        type: 'GET',
+        success: function (response) {
+          console.log(response);
+          const vendedores = JSON.parse(response);
+          let template = '';
+          vendedores.forEach(vendedor => {
+            template += `
+                  <option value="${vendedor.idvendedor}" class="">${vendedor.nombre}</option>
+                  `
+          });
+          $('#inputSelectVendedor').html(template);
+        }
+      });
+    };
+    
+    // Selección de vendedor
+    $(document).on('change', '.forma-pago-2', (e) => {
+      const idvendedor = $(this)[0].activeElement.value;
+      $.post('db_php/Vendedores/seleccionarVendedor.php', {idvendedor}, (response) => {
+        console.log(response);
+        const vendedores = JSON.parse(response);
+        vendedores.forEach(vendedor => {
+          vend.setAttribute('vendId', vendedor.idvendedor);
+          vend.innerText = vendedor.nombre;
+          var idvend=vendedor.idvendedor;
+          $.post('db_php/Ventas/consultaVentasVendedor.php', {idvend}, (response) => {
+
+          });
+        });
+        $('#cont-selVendedorM').hide();
+      });
+    });
   
   });
