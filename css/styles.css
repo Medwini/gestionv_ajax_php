@@ -49,6 +49,20 @@
     color: var(--white);
 }
 
+.btn-nav{
+    padding: 6px 12px;
+    border-radius: 5px;
+    border: 1px solid var(--principal);
+    color: var(--principal);
+    font-size: 1em;
+}
+
+.btn-nav:hover{
+    border: 1px solid var(--principal);
+    background-color: var(--principal);
+    color: lightcyan;
+}
+
 /* ESTILOS MODAL FORMA PAGO */
 .cont-modal{
     position: absolute;
@@ -74,6 +88,6 @@
 form{
     padding: 3px;
     background-color: var(--white);
-    border-top: 1px solid var(--principal);
-    border-bottom: 1px solid var(--principal);
+    /* border-top: 1px solid var(--principal);
+    border-bottom: 1px solid var(--principal); */
 }

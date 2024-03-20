@@ -14,9 +14,50 @@
 
 <body>
 
+  <header>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item mx-2">
+              <button id="btn-navVend" class="btn-nav">Vendedor</button>
+            </li>
+            <li class="nav-item mx-2">
+              <button id="btn-navEst" class="btn-nav">Estadísticas</button>
+            </li>
+            <li class="nav-item mx-2">
+              <button id="btn-config" class="btn-nav">Configuraciones</button>
+            </li>
+          </ul>
+          <form class="d-flex" role="search">
+            <input class="form-control me-2" type="search" placeholder="Buscar producto" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Buscar</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+  </header>
 
+  <main id="cont-venta">
+    <section id="cont-cliente">
+      <div class="container">
+        <form id="buscarCliente">
+          <div id="busc-Cliente" class="input-group center my-1">
+            <span class="input-group-text" id="inputGroup-sizing-sm">Cliente:</span>
+            <input type="text" id="cedula-detV" class="form-control" placeholder="V- | G- | J-">
+            <input type="text" id="nombre-detV" class="form-control" disabled placeholder="Nombre...">
+            <button id="btnb-cliente" type="submit" class="btn btn-outline-success" style="width: 20%;">Buscar</button>
+            <button type="button" class="btn btn-outline-success" style="width: 20%;">Nuevo</button>
+          </div>
+        </form>
+      </div>
+    </section>
+    <section id="cont-detVenta"></section>
+  </main>
+  
   <button id="btn-formaPago" class="">Formas de pago</button>
-  <button id="btn-config" class="">Configuraciones</button>
+
+  
 
   <!-- Ficha de formas de pago -->
   <div id="cont-formaPagoM" class="center-v cont-modal">
@@ -116,7 +157,7 @@
 
       <div id="crudProd" class="container p-3">
         <button id="btnc-Prod" class="btn-nuevo my-2">Crear nuevo</button>
-        <form id="crearProducto" class="my-2">
+        <form id="crearProducto" class="my-2 tabla-scroll">
           <div class="input-group center my-1">
             <span class="input-group-text" id="inputGroup-sizing-sm">Código de barra:</span>
             <input type="text" id="codBarra_Prod" required class="form-control" placeholder="...">
@@ -275,6 +316,7 @@
   <script src="formasPago.js"></script>
   <script src="vendedores.js"></script>
   <script src="productos.js"></script>
+  <script src="clientes.js"></script>
 </body>
 
 </html>
