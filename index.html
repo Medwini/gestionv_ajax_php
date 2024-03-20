@@ -19,23 +19,9 @@
   <button id="btn-config" class="">Configuraciones</button>
 
   <!-- Ficha de formas de pago -->
-  <div id="cont-formaPagoM" class="center-v">
+  <div id="cont-formaPagoM" class="center-v cont-modal">
     <div class="container text-bg-light p-3 vtn-modal">
       <h3 class="mletters center">Pagos</h3>
-      <!-- <button id="btn-nuevo" class="btn-nuevo">Crear nueva</button>
-      <form id="crearFormaPago">
-        <div id="cont-nuevo" class="input-group center my-1">
-          <input type="text" id="descripcion_formaPago" class="form-control" placeholder="Descripción..."
-            aria-label="Nombre de la forma de pago">
-          <button class="btn btn-outline-secondary" type="submit">Guardar</button>
-          <button class="btn btn-outline-secondary btn-cancel" type="button">Cancelar</button>
-        </div> -->
-        <!-- <div id="cont-nuevo" class="input-group center my-1">
-          <input type="number" id="tasa_formaPago" class="form-control" min="1" step="0.001" placeholder="Monto..."
-            aria-label="tasa de la forma de pago">
-        </div>
-      </form> -->
-
       <div class="input-group mb-3 my-2">
         <label class="input-group-text" for="inputGroupSelect01">Formas de pago:</label>
         <select class="form-select forma-pago" id="inputGroupSelect01">
@@ -43,7 +29,7 @@
         </select>
       </div>
 
-      <div id="tFormasPago" class="mb-2">
+      <div id="tFormasPago" class="mb-2 tabla-scroll">
         <table class="table table-hover mletters">
           <thead>
             <tr>
@@ -118,24 +104,89 @@
     </div>
   </div>
 
-  <div id="cont-config" class="center-v">
+  <div id="cont-config" class="center-v cont-modal">
     <div class="container text-bg-light p-3 vtn-modal">
       <h3 class="gmletters center">Configuraciones</h3>
       <div>
         <button id="act-crudProd">Productos</button>
         <button id="act-crudVend">Vendedores</button>
         <button id="act-crudFP">Formas de pago</button>
+        <button class="close-modal">Cerrar</button>
       </div>
 
-      <div id="crudProd" class="container p-3">Hola prod</div>
+      <div id="crudProd" class="container p-3">
+        <button id="btnc-Prod" class="btn-nuevo my-2">Crear nuevo</button>
+        <form id="crearProducto" class="my-2">
+          <div class="input-group center my-1">
+            <span class="input-group-text" id="inputGroup-sizing-sm">Código de barra:</span>
+            <input type="text" id="codBarra_Prod" required class="form-control" placeholder="...">
+          </div>
+          <div class="input-group center my-1">
+            <span class="input-group-text" id="inputGroup-sizing-sm">Descripción:</span>
+            <input type="text" id="desc_Prod" required class="form-control" placeholder="...">
+          </div>
+          <div class="input-group center my-1">
+            <span class="input-group-text" id="inputGroup-sizing-sm">Costo Base:</span>
+            <input type="number" id="costoB_Prod" required min="1" step="0.001" class="form-control" placeholder="...">
+          </div>
+          <div class="input-group center my-1">
+            <span class="input-group-text" id="inputGroup-sizing-sm">Rentabilidad:</span>
+            <input type="number" id="rent_Prod" required min="0" step="0.01" class="form-control" placeholder="...">
+          </div>
+          <div class="input-group center my-1">
+            <span class="input-group-text" id="inputGroup-sizing-sm">Precio Base:</span>
+            <input type="number" id="precioB_Prod" required min="1" step="0.001" class="form-control" placeholder="...">
+          </div>
+          <div class="input-group center my-1">
+            <span class="input-group-text" id="inputGroup-sizing-sm">Descuento:</span>
+            <input type="number" id="descuento_Prod" required min="0" step="0.01" class="form-control" placeholder="...">
+          </div>
+          <div class="input-group center my-1">
+            <span class="input-group-text" id="inputGroup-sizing-sm">Cantidad:</span>
+            <input type="number" id="cant_Prod" required min="0" step="0.01" class="form-control" placeholder="...">
+          </div>
+          <p class="smletters">Nota: Puede insertar valores decimales, en el caso de que el producto sea detallado. (Ejemplo de cantidad: 1 = 1 litro | 0.5 = Medio litro)</p>
+          <div class="center spacingb my-2">
+            <button class="btn btn-success" type="submit">Guardar</button>
+            <button class="btn btn-secondary btn-cancel" type="button">Cancelar</button>
+          </div>
+        </form>
+
+        <div class="tabla-scroll">
+          <table id="listProductos"  class="table mletters">
+            <thead>
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Código Barra</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">Costo Base</th>
+                <th scope="col">Rentabilidad</th>
+                <th scope="col">Precio Base</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="body-tProd" class="table-group-divider">
+              <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>
+                  <button class="btn btn-info btn-sm">Editar</button>
+                  <button class="btn btn-danger btn-sm">Eliminar</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
 
       <div id="crudVend" class="container p-3">
         <button id="btnc-Vend" class="btn-nuevo my-2">Crear nuevo</button>
         <form id="crearVendedor" class="my-2">
           <div class="input-group center my-1">
             <span class="input-group-text" id="inputGroup-sizing-sm">Identificación:</span>
-            <input type="text" id="ident_vend" required class="form-control" placeholder="Agregue V-..."
-              aria-label="Nombre de la forma de pago">
+            <input type="text" id="ident_vend" required class="form-control" placeholder="Agregue V-...">
           </div>
           <div class="input-group center my-1">
             <span class="input-group-text" id="inputGroup-sizing-sm">Nombre:</span>
@@ -155,27 +206,30 @@
           </div>
         </form>
 
-        <table id="listVendedores"  class="table mletters">
-          <thead>
-            <tr>
-              <th scope="col">Id</th>
-              <th scope="col">Identificación</th>
-              <th scope="col">Nombre</th>
-              <th scope="col">Acciones</th>
-            </tr>
-          </thead>
-          <tbody id="body-tVend" class="table-group-divider">
-            <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>
-                <button class="btn btn-info btn-sm">Editar</button>
-                <button class="btn btn-danger btn-sm">Eliminar</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="tabla-scroll">
+          <table id="listVendedores"  class="table mletters">
+            <thead>
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Identificación</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="body-tVend" class="table-group-divider">
+              <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>
+                  <button class="btn btn-info btn-sm">Editar</button>
+                  <button class="btn btn-danger btn-sm">Eliminar</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
       </div>
 
       <div id="crudFP" class="container p-3">
@@ -183,8 +237,7 @@
         <form id="crearFormaPago" class="my-2">
           <div class="input-group center my-1">
             <span class="input-group-text" id="inputGroup-sizing-sm">Descripción</span>
-            <input type="text" id="descripcion_formaPago" required class="form-control" placeholder="Efectivo..."
-              aria-label="Nombre de la forma de pago">
+            <input type="text" id="descripcion_formaPago" required class="form-control" placeholder="Efectivo...">
             <button class="btn btn-outline-success" type="submit">Guardar</button>
             <button class="btn btn-outline-secondary btn-cancel" type="button">Cancelar</button>
           </div>
@@ -195,19 +248,21 @@
           </div>
         </form>
 
-        <table id="listFormaPago" class="table mletters">
-          <thead>
-            <tr>
-              <th scope="col">Id</th>
-              <th scope="col">Descripción</th>
-              <th scope="col">Tasa</th>
-              <th scope="col">Acciones</th>
-            </tr>
-          </thead>
-          <tbody id="body-tFP" class="table-group-divider">
-            
-          </tbody>
-        </table>
+        <div class="tabla-scroll">
+          <table id="listFormaPago" class="table mletters">
+            <thead>
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">Tasa</th>
+                <th scope="col">Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="body-tFP" class="table-group-divider">
+              
+            </tbody>
+          </table>
+        </div>
       </div>
       
     </div>
@@ -219,6 +274,7 @@
   <script src="main.js"></script>
   <script src="formasPago.js"></script>
   <script src="vendedores.js"></script>
+  <script src="productos.js"></script>
 </body>
 
 </html>

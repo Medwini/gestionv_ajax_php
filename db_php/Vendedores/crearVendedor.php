@@ -15,6 +15,8 @@
         }
         echo "Vendedor creado exitosamente";  
       
+    }else{
+      echo "Error al intentar procesar, existe algún dato erróneo.";
     }
       
 

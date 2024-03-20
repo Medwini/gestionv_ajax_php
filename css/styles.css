@@ -50,7 +50,7 @@
 }
 
 /* ESTILOS MODAL FORMA PAGO */
-#cont-formaPagoM{
+.cont-modal{
     position: absolute;
     top: 0;
     left: 0;
@@ -66,7 +66,7 @@
 }
 
 
-#tFormasPago{
+.tabla-scroll{
     overflow: auto;
     height: 25vh;
 }

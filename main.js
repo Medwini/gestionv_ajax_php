@@ -10,6 +10,8 @@ $(function() {
       $('#crudVend').hide();
       $('#crudProd').hide();
       $('#crearVendedor').hide();
+      $('#crearProducto').hide();
+      $('#cont-config').hide();
    }
 
 
@@ -33,6 +35,12 @@ $(function() {
 
    $(document).on('click', '.close-modal', (e) =>{
       valoresDefault();
+   });
+
+   // Mostrar modal de configuraciones
+
+   $('#btn-config').on('click', function () {
+      $('#cont-config').show();
    });
 
    // Mostrar crud de configuraciones
@@ -67,6 +75,18 @@ $(function() {
       $('#crudProd').show();
       $('#crudFP').hide();
       $('#crudVend').hide();
+   });
+
+   $('#btnc-Prod').on('click', function(){
+      $('#crearProducto').show();
+      $('#btnc-Prod').hide();
+   });
+
+   $(document).on('click', '.btn-cancel',(e) =>{
+      $('#crearProducto').hide();
+      $('#btnc-Prod').show();
+
+      $('#crearProducto').trigger('reset');
    });
    
 

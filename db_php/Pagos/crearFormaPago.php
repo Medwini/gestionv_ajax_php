@@ -13,6 +13,8 @@
         }
         echo "Forma de pago creada exitosamente";  
       
+    }else{
+      echo "Error al intentar procesar, existe algún dato erróneo.";
     }
       
 
