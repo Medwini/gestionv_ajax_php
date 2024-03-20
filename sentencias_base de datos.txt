@@ -62,3 +62,19 @@ CREATE TABLE IF NOT EXISTS ventas_det(
     fecha_ventadet DATETIME NOT NULL,
     cantidad INT NOT NULL
 )
+
+DELIMITER //
+CREATE PROCEDURE actualizar_cantVenta(IN idregistro INT, IN nuevo_cant INT, OUT mensaje VARCHAR(100))
+BEGIN
+	IF nuevo_cant>(SELECT cantidad FROM productos WHERE idproducto = idregistro)
+        THEN
+       		SET mensaje='Invalido';
+        ELSE     
+            UPDATE ventas_det
+            SET cantidad=nuevo_cant
+            WHERE idventa_det=idregistro;
+            SET mensaje='Actualizado';
+    END IF;
+END //
+
+DELIMITER ;

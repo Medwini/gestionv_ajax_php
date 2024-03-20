@@ -4,7 +4,7 @@
 
     if(isset($_POST['idvend'])) {
         $idvend = $_POST['idvend'];
-        $query = "SELECT a.idcliente,a.idvendedor, a.monto_total, c.nombre, d.descripcion, b.* FROM ventas_cab a
+        $query = "SELECT a.idcliente,a.idvendedor, d.cantidad cantActual,a.monto_total, c.nombre, d.descripcion, b.* FROM ventas_cab a
                     INNER JOIN ventas_det b 
                     ON a.idventa_cab = b.idventa_cab
                     INNER JOIN clientes c
@@ -31,7 +31,7 @@
                 'impuesto' => $filas['impuesto'],
                 'idproducto' => $filas['idproducto'],
                 'fecha_ventadet' => $filas['fecha_ventadet'],
-                'cantidad' => $filas['cantidad']
+                'cantActual' => $filas['cantActual']
             );
         }
         $jsonstring = json_encode($json);
