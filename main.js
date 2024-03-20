@@ -3,7 +3,7 @@ $(function() {
    valoresDefault();
 
    function valoresDefault() {
-      $('#btn-nuevo').show();
+      $('#btnc-FP').show();
       $('#crearFormaPago').hide();
       $('#cont-formaPagoM').hide();
       $('#crudFP').hide();
@@ -16,12 +16,12 @@ $(function() {
    // Mostrar modal de pagos
    $(document).on('click', '.btn-nuevo', (e) =>{
       $('#crearFormaPago').show();
-      $('#btn-nuevo').hide();
+      $('#btnc-FP').hide();
    });
 
    $(document).on('click', '.btn-cancel', (e) =>{
       $('#crearFormaPago').hide();
-      $('#btn-nuevo').show();
+      $('#btnc-FP').show();
 
       $('#crearFormaPago').trigger('reset');
    });

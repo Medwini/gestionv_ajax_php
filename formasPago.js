@@ -14,7 +14,8 @@ $(function () {
 
     });
     $('#crearFormaPago').hide();
-    $('#btn-nuevo').show();
+    $('#btnc-FP').show();
+    obtenerFormaPago();
   });
 
   // Obtener todas las formas de pago
@@ -23,6 +24,7 @@ $(function () {
       url: 'db_php/Pagos/consultaFormaPago.php',
       type: 'GET',
       success: function (response) {
+        console.log(response);
         const formasPago = JSON.parse(response);
         let template = '';
         formasPago.forEach(formaPago => {
@@ -33,7 +35,7 @@ $(function () {
         $('#inputGroupSelect01').html(template);
         let template2 = '';
         formasPago.forEach(formaPago => {
-          template += `
+          template2 += `
                 <tr>
                   <th scope="row">${formaPago.idforma_pago}</th>
                   <td>${formaPago.descripcion}</td>
