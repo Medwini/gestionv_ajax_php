@@ -54,6 +54,31 @@ $(function () {
       });
     };
 
+    function actPrecio() {
+      let rentabilidad =  $('#rent_Prod').val();
+      let costo_b = $('#costoB_Prod').val();
+      let desc = $('#descuento_Prod').val();
+      let rent = (100 - rentabilidad)/100;
+      var precioU = costo_b / rent;
+      let precioNU = precioU-(precioU * desc)/100;
+      $('#precioB_Prod').val(precioNU);
+    }
+
+
+    $(document).on('keyup', '#costoB_Prod', (e) => {
+      actPrecio();
+    });
+
+    $(document).on('keyup', '#descuento_Prod', (e) => {
+      actPrecio();
+    });
+
+    $(document).on('keyup', '#rent_Prod', (e) => {
+      actPrecio();
+    });
+
+    
+
 
     // Buscar productos
 
@@ -86,6 +111,9 @@ $(function () {
                 `
           });
           $('#cont-cardsProducto').html(template);
+        }else{
+          $('#cont-busqProductosM').hide();
+          alert('No existen datos sobre su búsqueda.');
         }
       });
     });
