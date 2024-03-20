@@ -29,9 +29,9 @@
               <button id="btn-config" class="btn-nav">Configuraciones</button>
             </li>
           </ul>
-          <form class="d-flex" role="search">
+          <form id="buscador" class="d-flex" role="search">
             <input class="form-control me-2" type="search" placeholder="Buscar producto" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Buscar</button>
+            <button id="btn-buscarProducto" class="btn btn-outline-success" type="submit">Buscar</button>
           </form>
         </div>
       </div>
@@ -94,7 +94,80 @@
   
   <button id="btn-formaPago" class="">Formas de pago</button>
 
-  
+  <div id="cont-busqProductosM" class="center-v cont-modal">
+    <div class="container text-bg-light p-3 vtn-modal">
+      <h3 class="mletters center">Productos</h3>
+      <div class="p-3">
+        <button class="close-modal">Cerrar</button>
+        <div class="cont-scrollProductos">
+          <div id="cont-cardsProducto" class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+              <div class="card card-producto" style="width: 10rem;">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Nombre</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><span>Cantidad: </span>2</li>
+                  <li class="list-group-item"><span>Precio U:</span>24.520</li>
+                </ul>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card card-producto" style="width: 10rem;">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Nombre</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><span>Cantidad: </span>2</li>
+                  <li class="list-group-item"><span>Precio U:</span>24.520</li>
+                </ul>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card card-producto" style="width: 10rem;">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Nombre</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><span>Cantidad: </span>2</li>
+                  <li class="list-group-item"><span>Precio U:</span>24.520</li>
+                </ul>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card card-producto" style="width: 10rem;">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Nombre</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><span>Cantidad: </span>2</li>
+                  <li class="list-group-item"><span>Precio U:</span>24.520</li>
+                </ul>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card card-producto" style="width: 10rem;">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Nombre</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><span>Cantidad: </span>2</li>
+                  <li class="list-group-item"><span>Precio U:</span>24.520</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+    </div>
+  </div>
 
   <!-- Ficha de formas de pago -->
   <div id="cont-formaPagoM" class="center-v cont-modal">
@@ -187,6 +260,7 @@
       <h3 class="mletters center">Clientes</h3>
       <div id="crudCliente" class="container p-3">
         <button id="btnc-Cliente" class="btn-nuevo my-2">Crear nuevo</button>
+        <button class="close-modal">Cerrar</button>
         <form id="crearCliente" class="my-2">
           <div class="input-group center my-1">
             <span class="input-group-text" id="inputGroup-sizing-sm">Identificación:</span>

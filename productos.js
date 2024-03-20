@@ -54,5 +54,42 @@ $(function () {
       });
     };
 
+
+    // Buscar productos
+
+    $('#buscador').submit(e => {
+      const descripcion = $(this)[0].activeElement.parentNode.childNodes[1].value;
+      $.post('db_php/Productos/buscarProducto.php', {descripcion}, (response) => {
+        console.log(response);
+        const productos = JSON.parse(response);
+        console.log(productos.length);
+        if(productos.length > 0){
+          var template = '';
+          productos.forEach(producto => {
+            let rent = (100 - producto.rentabilidad)/100;
+            var precioU = producto.costo_base / rent;
+            console.log(precioU);
+            template += `
+              <div prodSeleId="${producto.idproducto}" class="col">
+                <div class="card card-producto" style="width: 10rem;">
+                  <img src="#" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">${producto.descripcion}</h5>
+                  </div>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><span>Cantidad: </span>${producto.cantidad}</li>
+                    <li class="list-group-item"><span>Descuento:</span>${producto.descuento}</li>
+                    <li class="list-group-item"><span>Precio T:</span>${precioU}</li>
+                  </ul>
+                </div>
+              </div>
+                `
+          });
+          $('#cont-cardsProducto').html(template);
+        }
+      });
+    });
+  
+
   
   });

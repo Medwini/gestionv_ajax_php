@@ -14,6 +14,7 @@ $(function() {
       $('#cont-config').hide();
       $('#cont-clientesM').hide();
       $('#crearCliente').hide();
+      $('#cont-busqProductosM').hide();
    }
 
 
@@ -109,6 +110,19 @@ $(function() {
 
       $('#crearCliente').trigger('reset');
    });
+
+      // Mostrar modal de buscar productos
+
+      $('#btn-buscarProducto').on('click', function () {
+         $('#cont-busqProductosM').show();
+      });
+   
+      $(document).on('click', '.btn-cancel',(e) =>{
+         $('#crearCliente').hide();
+         $('#btnc-Cliente').show();
+   
+         $('#crearCliente').trigger('reset');
+      });
    
 
 });

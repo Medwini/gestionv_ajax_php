@@ -75,7 +75,7 @@
 }
 
 .vtn-modal{
-    width: 60%;
+    width: 65%;
     /* height: 60%; */
 }
 
@@ -83,6 +83,11 @@
 .tabla-scroll{
     overflow: auto;
     height: 25vh;
+}
+
+.cont-scrollProductos{
+    overflow-y: auto;
+    height: 50vh;
 }
 
 form{
