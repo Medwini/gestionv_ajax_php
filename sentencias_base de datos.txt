@@ -49,3 +49,16 @@ CREATE TABLE IF NOT EXISTS ventas_cab(
     fecha_venta DATETIME NOT NULL,
     estado INT NOT NULL
 )
+
+CREATE TABLE IF NOT EXISTS ventas_det(
+    idventa_det INT NOT NULL AUTO_INCREMENT, 
+    PRIMARY KEY (idventa_det),
+    idventa_cab INT NOT NULL,
+    FOREIGN KEY (idventa_cab) REFERENCES ventas_cab(idventa_cab),
+    precio_base DECIMAL (10,3) NOT NULL,
+    impuesto DECIMAL (10,3) NOT NULL,
+    idproducto INT NOT NULL,
+    FOREIGN KEY (idproducto) REFERENCES productos(idproducto),
+    fecha_ventadet DATETIME NOT NULL,
+    cantidad INT NOT NULL
+)
