@@ -68,7 +68,7 @@ $(function () {
           productos.forEach(producto => {
             let rent = (100 - producto.rentabilidad)/100;
             var precioU = producto.costo_base / rent;
-            console.log(precioU);
+            let precioNU = precioU-(precioU * producto.descuento)/100;
             template += `
               <div prodSeleId="${producto.idproducto}" class="col">
                 <div class="card card-producto" style="width: 10rem;">
@@ -79,7 +79,7 @@ $(function () {
                   <ul class="list-group list-group-flush">
                     <li class="list-group-item"><span>Cantidad: </span>${producto.cantidad}</li>
                     <li class="list-group-item"><span>Descuento:</span>${producto.descuento}</li>
-                    <li class="list-group-item"><span>Precio T:</span>${precioU}</li>
+                    <li class="list-group-item"><span>Precio T:</span>${precioNU}</li>
                   </ul>
                 </div>
               </div>
