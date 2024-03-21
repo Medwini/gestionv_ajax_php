@@ -88,7 +88,7 @@ $(function () {
             if(ventas_det.length > 0){
               ventas_det.forEach(venta_det => {
                 template += `
-                    <tr prodDetId="${venta_det.idproducto}" ventDetId="${venta_det.idventa_det}>
+                    <tr prodDetId="${venta_det.idproducto}" ventDetId="${venta_det.idventa_det}">
                       <th scope="row">
                         <a class="btn-elDetProd" href="#">
                           <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square-x" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -103,6 +103,7 @@ $(function () {
                       <td>${venta_det.cantActual}</td>
                       <td><input type="text" class="inp-cantP" style="border: none; padding: .3rem;" value="${venta_det.cantidad}"></td>
                       <td class="monto_bCantidad"></td>
+                      <td></td>
                       <td>${venta_det.impuesto}</td>
                       <td class="monto_subTotal"></td>
                     </tr>
