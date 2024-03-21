@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS ventas_det(
 
 DROP PROCEDURE IF EXISTS actualizar_cantVenta;
 DELIMITER //
-CREATE PROCEDURE actualizar_cantVenta(IN idregistro INT, IN nuevo_cant INT, OUT mensaje INT(2))
+CREATE PROCEDURE actualizar_cantVenta(IN idregistro INT, IN nuevo_cant INT, IN idventdet INT, OUT mensaje INT(2))
 BEGIN
 	IF nuevo_cant>(SELECT cantidad FROM productos WHERE idproducto = idregistro)
         THEN
@@ -73,12 +73,13 @@ BEGIN
         ELSE     
             UPDATE ventas_det
             SET cantidad=nuevo_cant
-            WHERE idventa_det=idregistro;
+            WHERE idventa_det=idventdet;
             SET mensaje=1;
     END IF;
 END //
 
 DELIMITER ;
+
 
 DROP PROCEDURE IF EXISTS agregar_productoDet;
 DELIMITER //
@@ -90,11 +91,27 @@ BEGIN
     SET idcab = (SELECT idventa_cab FROM ventas_cab where idvendedor = idvend);
     SET precio_b= (SELECT precio_base FROM productos WHERE idproducto = idprod);
     
-    IF idprod=(SELECT idproducto FROM ventas_det WHERE idproducto = idprod GROUP BY idproducto)
+    IF idprod=(SELECT idproducto FROM ventas_det WHERE idproducto = idprod AND idventa_cab = idcab GROUP BY idproducto)
         THEN
        		SET mensaje=0;
         ELSE     
             INSERT INTO ventas_det(idventa_cab, precio_base, impuesto, idproducto, fecha_ventadet, cantidad) VALUES (idcab,precio_b,16.00, idprod, NOW(), cant);
+            SET mensaje=1;
+    END IF;
+    
+END //
+
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS crear_ventacab;
+DELIMITER //
+CREATE PROCEDURE crear_ventacab(IN idvend INT,OUT mensaje VARCHAR(10))
+BEGIN
+    IF idvend=(SELECT idvendedor FROM ventas_cab WHERE idvendedor = idvend AND estado = 1 GROUP BY idvendedor)
+        THEN
+       		SET mensaje=0;
+        ELSE     
+            INSERT INTO ventas_cab(idcliente, monto_total, idvendedor, fecha_venta, estado) VALUES (1, 0, idvend, NOW(),1);
             SET mensaje=1;
     END IF;
     

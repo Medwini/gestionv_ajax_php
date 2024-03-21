@@ -5,7 +5,8 @@
     if(isset($_POST['idProdDet'])) {
         $idProdDet = $_POST['idProdDet'];
         $CantProdDet = $_POST['CantProdDet'];
-        $query = "CALL actualizar_cantVenta('$idProdDet', '$CantProdDet', @mensaje);
+        $idventa_det = $_POST['idventa_det'];
+        $query = "CALL actualizar_cantVenta('$idProdDet', '$CantProdDet', '$idventa_det', @mensaje);
         SELECT @mensaje AS mensaje;";
         $result = mysqli_multi_query($connection, $query);
         if (!$result) {

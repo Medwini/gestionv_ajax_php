@@ -21,11 +21,13 @@ $(function () {
     $(document).on('change', '.inp-cantP', (e) => {
         var idProdDet = $(this)[0].activeElement.parentNode.parentNode.getAttribute('prodDetId');
         var CantProdDet = $(this)[0].activeElement.value;
-        console.log(idProdDet);
-        console.log(CantProdDet);
+        var idventa_det = $(this)[0].activeElement.parentNode.parentNode.getAttribute('ventDetId');
+        console.log(idventa_det);
+
         const postData = {
             idProdDet: idProdDet,
-            CantProdDet: CantProdDet
+            CantProdDet: CantProdDet,
+            idventa_det: idventa_det 
         };
         $.post('db_php/Ventas/actCantSolicitada.php', postData, (response) => {
             const mensajes = JSON.parse(response);

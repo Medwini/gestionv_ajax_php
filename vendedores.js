@@ -3,24 +3,7 @@ $(function () {
     var vend = document.getElementById('btn-navVend');
     vend.innerText = 'Vendedor';
   
-    // Crear vendedores
-    $('#crearVendedor').submit(e => {
-      e.preventDefault();
-      const postData = {
-        cedula: $('#ident_vend').val(),
-        nombre: $('#nombre_vend').val(),
-        telefono: $('#tel_vend').val(),
-        direccion: $('#dir_vend').val(),
-      };
-      $.post('db_php/Vendedores/crearVendedor.php', postData, (response) => {
-        alert(response);
-        $('#crearVendedor').trigger('reset');
-  
-      });
-      $('#crearVendedor').hide();
-      $('#btnc-Vend').show();
-      obtenerVendedores();
-    });
+    
   
     // Obtener todos los vendedores
     function obtenerVendedores() {
@@ -69,6 +52,25 @@ $(function () {
         }
       });
     };
+
+    // Crear vendedores
+    $('#crearVendedor').submit(e => {
+
+      const postData = {
+        cedula: $('#ident_vend').val(),
+        nombre: $('#nombre_vend').val(),
+        telefono: $('#tel_vend').val(),
+        direccion: $('#dir_vend').val(),
+      };
+      $.post('db_php/Vendedores/crearVendedor.php', postData, (response) => {
+        alert(response);
+        $('#crearVendedor').trigger('reset');
+      });
+      $('#crearVendedor').hide();
+      $('#btnc-Vend').show();
+      obtenerVendedores();
+      e.preventDefault();
+    });
     
     // Selección de vendedor
     $(document).on('change', '.forma-pago-2', (e) => {
@@ -86,7 +88,7 @@ $(function () {
             if(ventas_det.length > 0){
               ventas_det.forEach(venta_det => {
                 template += `
-                    <tr prodDetId=${venta_det.idventa_det}>
+                    <tr prodDetId="${venta_det.idproducto}" ventDetId="${venta_det.idventa_det}>
                       <th scope="row">
                         <a class="btn-elDetProd" href="#">
                           <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square-x" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -99,7 +101,7 @@ $(function () {
                       <td>${venta_det.descripcion}</td>
                       <td>${venta_det.precio_base}</td>
                       <td>${venta_det.cantActual}</td>
-                      <td><input type="text" class="inp-cantP" style="border: none; padding: .5rem;" placeholder="Pedido..."></td>
+                      <td><input type="text" class="inp-cantP" style="border: none; padding: .3rem;" value="${venta_det.cantidad}"></td>
                       <td class="monto_bCantidad"></td>
                       <td>${venta_det.impuesto}</td>
                       <td class="monto_subTotal"></td>
@@ -107,7 +109,9 @@ $(function () {
                       `
               });
             }else{
-              console.log('nadita');
+              $.post('db_php/Ventas/crearVentaVendedor.php', {idvend}, (response) => {
+                console.log(response);
+              });
             };
             
             $('#body-tDetVenta').html(template);

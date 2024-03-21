@@ -3,25 +3,6 @@ $(function () {
 
     var editar =false;
   
-    // Crear formas de pago
-    $('#crearVendedor').submit(e => {
-      e.preventDefault();
-      const postData = {
-        cedula: $('#ident_vend').val(),
-        nombre: $('#nombre_vend').val(),
-        telefono: $('#tel_vend').val(),
-        direccion: $('#dir_vend').val(),
-      };
-      $.post('db_php/Vendedores/crearVendedor.php', postData, (response) => {
-        alert(response);
-        $('#crearVendedor').trigger('reset');
-  
-      });
-      $('#crearVendedor').hide();
-      $('#btnc-Vend').show();
-      obtenerVendedores();
-    });
-  
     // Busqueda de clientes
     $('#buscarCliente').submit(e => {
         e.preventDefault();
@@ -51,7 +32,6 @@ $(function () {
                             <input type="text" id="cedula-detV" class="form-control" value="${cliente.cedula}">
                             <input type="text" id="nombre-detV" class="form-control" disabled value="${cliente.nombre}">
                             <button id="btnb-cliente" type="submit" class="btn btn-outline-success" style="width: 20%;">Buscar</button>
-                            <button id="btn-cliente" type="button" class="btn btn-outline-info" style="width: 20%;">Nuevo</button>
                             `
 
                         $('#busc-Cliente').html(template);
@@ -68,7 +48,6 @@ $(function () {
                         <input type="text" id="cedula-detV" class="form-control" placeholder="V- | G- | J-">
                         <input type="text" id="nombre-detV" class="form-control" disabled placeholder="Nombre...">
                         <button id="btnb-cliente" type="submit" class="btn btn-outline-success" style="width: 20%;">Buscar</button>
-                        <button id="btn-cliente" type="button" class="btn btn-outline-info" style="width: 20%;">Nuevo</button>
                             `
 
                         $('#busc-Cliente').html(template);
@@ -83,7 +62,6 @@ $(function () {
                         <input type="text" id="cedula-detV" class="form-control" placeholder="V- | G- | J-">
                         <input type="text" id="nombre-detV" class="form-control" disabled placeholder="Nombre...">
                         <button id="btnb-cliente" type="submit" class="btn btn-outline-success" style="width: 20%;">Buscar</button>
-                        <button id="btn-cliente" type="button" class="btn btn-outline-info" style="width: 20%;">Nuevo</button>
                             `
 
                         $('#busc-Cliente').html(template);
@@ -95,7 +73,6 @@ $(function () {
                   <input type="text" id="cedula-detV" class="form-control" value="${cliente.cedula}">
                   <input type="text" id="nombre-detV" class="form-control" disabled value="${cliente.nombre}">
                   <button id="btnb-cliente" type="submit" class="btn btn-outline-success" style="width: 20%;">Buscar</button>
-                  <button id="btn-cliente" type="button" class="btn btn-outline-info" style="width: 20%;">Nuevo</button>
                     `
                 });
                 $('#busc-Cliente').html(template);

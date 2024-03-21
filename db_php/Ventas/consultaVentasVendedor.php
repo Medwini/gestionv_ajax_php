@@ -31,7 +31,8 @@
                 'impuesto' => $filas['impuesto'],
                 'idproducto' => $filas['idproducto'],
                 'fecha_ventadet' => $filas['fecha_ventadet'],
-                'cantActual' => $filas['cantActual']
+                'cantActual' => $filas['cantActual'],
+                'cantidad' => $filas['cantidad']
             );
         }
         $jsonstring = json_encode($json);
