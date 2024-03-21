@@ -63,18 +63,41 @@ CREATE TABLE IF NOT EXISTS ventas_det(
     cantidad INT NOT NULL
 )
 
+DROP PROCEDURE IF EXISTS actualizar_cantVenta;
 DELIMITER //
-CREATE PROCEDURE actualizar_cantVenta(IN idregistro INT, IN nuevo_cant INT, OUT mensaje VARCHAR(100))
+CREATE PROCEDURE actualizar_cantVenta(IN idregistro INT, IN nuevo_cant INT, OUT mensaje INT(2))
 BEGIN
 	IF nuevo_cant>(SELECT cantidad FROM productos WHERE idproducto = idregistro)
         THEN
-       		SET mensaje='Invalido';
+       		SET mensaje=0;
         ELSE     
             UPDATE ventas_det
             SET cantidad=nuevo_cant
             WHERE idventa_det=idregistro;
-            SET mensaje='Actualizado';
+            SET mensaje=1;
     END IF;
+END //
+
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS agregar_productoDet;
+DELIMITER //
+CREATE PROCEDURE agregar_productoDet(IN idprod INT, IN idvend INT, IN cant DECIMAL(10,3), OUT mensaje VARCHAR(10))
+BEGIN
+    DECLARE idcab INT;
+    DECLARE precio_b DECIMAL(10,3);
+   
+    SET idcab = (SELECT idventa_cab FROM ventas_cab where idvendedor = idvend);
+    SET precio_b= (SELECT precio_base FROM productos WHERE idproducto = idprod);
+    
+    IF idprod=(SELECT idproducto FROM ventas_det WHERE idproducto = idprod GROUP BY idproducto)
+        THEN
+       		SET mensaje=0;
+        ELSE     
+            INSERT INTO ventas_det(idventa_cab, precio_base, impuesto, idproducto, fecha_ventadet, cantidad) VALUES (idcab,precio_b,16.00, idprod, NOW(), cant);
+            SET mensaje=1;
+    END IF;
+    
 END //
 
 DELIMITER ;

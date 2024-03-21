@@ -77,9 +77,6 @@ $(function () {
       actPrecio();
     });
 
-    
-
-
     // Buscar productos
 
     $('#buscador').submit(e => {
@@ -96,7 +93,8 @@ $(function () {
             let precioNU = precioU-(precioU * producto.descuento)/100;
             template += `
               <div prodSeleId="${producto.idproducto}" class="col">
-                <div class="card card-producto" style="width: 10rem;">
+                <div class="card" style="width: 10rem;">
+                  <button type="button" class="btn btn-outline-success btn-select">Seleccionar</button>
                   <img src="#" class="card-img-top" alt="...">
                   <div class="card-body">
                     <h5 class="card-title">${producto.descripcion}</h5>
@@ -114,6 +112,60 @@ $(function () {
         }else{
           $('#cont-busqProductosM').hide();
           alert('No existen datos sobre su búsqueda.');
+        }
+      });
+    });
+
+    
+    $(document).on('click', '.btn-select', (e) => {
+      const idproducto = $(this)[0].activeElement.parentNode.parentNode.getAttribute('prodSeleId');
+      var idvend = document.getElementById('btn-navVend').getAttribute('vendId');
+      const postData = {
+        idproducto: idproducto,
+        idvend: idvend,
+      };
+      $.post('db_php/Ventas/agregarProducto.php', postData, (response) => {
+        console.log(response);
+        const mensajes = JSON.parse(response);
+        if(mensajes.mensaje == 1){
+          $('#cont-busqProductosM').hide();
+          $.post('db_php/Ventas/consultaVentasVendedor.php', {idvend}, (response) => {
+            console.log(response);
+            const ventas_det = JSON.parse(response);
+            let template = '';
+            if(ventas_det.length > 0){
+              ventas_det.forEach(venta_det => {
+                template += `
+                    <tr prodDetId=${venta_det.idventa_det}>
+                      <th scope="row">
+                        <a class="btn-elDetProd" href="#">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square-x" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                            <path d="M3 5a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-14z" />
+                            <path d="M9 9l6 6m0 -6l-6 6" />
+                          </svg>
+                        </a>
+                      </th>
+                      <td>${venta_det.descripcion}</td>
+                      <td>${venta_det.precio_base}</td>
+                      <td>${venta_det.cantActual}</td>
+                      <td><input type="text" class="inp-cantP" style="border: none; padding: .5rem;" placeholder="Pedido..."></td>
+                      <td class="monto_bCantidad"></td>
+                      <td>${venta_det.impuesto}</td>
+                      <td class="monto_subTotal"></td>
+                    </tr>
+                      `
+              });
+            }else{
+              console.log('nadita');
+            };
+            
+            $('#body-tDetVenta').html(template);
+
+          });
+        }else{
+          $('#cont-busqProductosM').hide();
+          alert('El producto ya existe en su lista de venta.');
         }
       });
     });
