@@ -11,7 +11,7 @@
                     ON a.idcliente = c.idcliente
                     INNER JOIN productos d
                     ON b.idproducto = d.idproducto
-                    WHERE a.idvendedor=${idvend} AND estado=1";
+                    WHERE a.idvendedor='${idvend}' AND estado=1";
         $result = mysqli_query($connection, $query);
       
         if (!$result) {
@@ -39,6 +39,8 @@
         $jsonstring = json_encode($json);
         echo $jsonstring;
       
+    }else{
+        echo 'hg';
     }
       
 

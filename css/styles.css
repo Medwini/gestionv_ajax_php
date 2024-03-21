@@ -82,6 +82,12 @@
     /* height: 60%; */
 }
 
+.close-modal{
+    padding: 6px 12px;
+    border-radius: 5px;
+    border: 1px solid var(--principal);
+    font-size: 1em;
+}
 
 .tabla-scroll{
     overflow: auto;

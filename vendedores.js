@@ -24,10 +24,6 @@ $(function () {
                     <td>${vendedor.nombre}</td>
                     <td>${vendedor.telefono}</td>
                     <td>${vendedor.direccion}</td>
-                    <td>
-                      <button FpId="${vendedor.idvendedor}" class="btn btn-info btn-sm">Editar</button>
-                      <button FpId="${vendedor.idvendedor}" class="btn btn-danger btn-sm">Eliminar</button>
-                    </td>
                   </tr>
                   `
           });

@@ -57,8 +57,23 @@ $(function () {
     const idforma_pago = $(this)[0].activeElement.value;
     console.log(idforma_pago);
     $.post('db_php/Pagos/agregarFormaPago.php', {idforma_pago}, (response) => {
-      console.log(response);
+
     });
   });
 
+  
+  $('#btn-formaPago').click(e => {
+    var idvend = document.getElementById('btn-navVend').getAttribute('vendId');
+    var monto_tt = document.getElementById('monto_total').innerText;
+    const postData = {
+      idvend: idvend,
+      monto_tt: monto_tt
+    };
+    $.post('db_php/Pagos/agregarFormaPago.php', postData, (response) => {
+      console.log(response);
+      $.post('db_php/Ventas/crearVentaVendedor.php', {idvend}, (response) => {
+
+      });
+    });
+  });
 });

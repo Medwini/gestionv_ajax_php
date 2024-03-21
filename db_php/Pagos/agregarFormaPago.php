@@ -2,22 +2,23 @@
 
     include('../db.php');
 
-    if(isset($_POST['idforma_pago'])) {
-        $idforma_pago = $_POST['idforma_pago'];
-        $query = "SELECT * FROM forma_pago WHERE idforma_pago= ${idforma_pago}";
-        $result = mysqli_query($connection, $query);
-      
+    
+
+    if(isset($_POST['idvend'])) {
+        $idvend = $_POST['idvend'];
+        $monto_tt = $_POST['monto_tt'];
+        $query = "CALL crearPagosCab('$idvend','$monto_tt',@mensaje);
+        SELECT @mensaje AS mensaje;";
+        $result = mysqli_multi_query($connection, $query);
         if (!$result) {
-          die('Ocurrió un error al procesar.'. mysqli_connect_error());
+          die('Ocurrió un error al procesar.'. mysqli_error($connection));
         }
-        $json = array();
-        while($filas = mysqli_fetch_array($result)) {
-            $json[] = array(
-                'idforma_pago' => $filas['idforma_pago'],
-                'descripcion' => $filas['descripcion'],
-                'tasa' => $filas['tasa']
-            );
-        }
+
+        mysqli_next_result($connection);
+        $result = mysqli_store_result($connection);
+        $row = mysqli_fetch_assoc($result);
+
+        $json = array('mensaje' => $row['mensaje']);
         $jsonstring = json_encode($json);
         echo $jsonstring;
       

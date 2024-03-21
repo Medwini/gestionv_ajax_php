@@ -106,7 +106,29 @@
       </section>
     </div>
   </footer>
-  
+
+  <div id="cont-estadisticasM" class="center-v cont-modal">
+    <div class="container text-bg-light p-3 vtn-modal">
+      <h3 class="mletters center">Estadisticas</h3>
+      <div class="p-3">
+        <button class="close-modal">Cerrar</button>
+        <div id="masvend">
+          <label for="">Más vendido:</label>
+        </div>
+        <div class="input-group">
+          <span class="input-group-text">Número de ventas</span>
+          <input type="text" id="txtVentasNum" disabled class="form-control">
+        </div>
+        <div class="input-group">
+          <span class="input-group-text">Producto más vendido</span>
+          <input type="text" id="txtMasVend" disabled class="form-control">
+        </div>
+
+      </div>
+
+      
+    </div>
+  </div>  
 
 
   <div id="cont-busqProductosM" class="center-v cont-modal">
@@ -126,7 +148,7 @@
   </div>
 
   <!-- Ficha de formas de pago -->
-  <div id="cont-formaPagoM" class="center-v cont-modal">
+  <!-- <div id="cont-formaPagoM" class="center-v cont-modal">
     <div class="container text-bg-light p-3 vtn-modal">
       <h3 class="mletters center">Pagos</h3>
       <div class="input-group mb-3 my-2">
@@ -209,7 +231,14 @@
 
       
     </div>
+  </div> -->
+  <div id="cont-formaPagoM" class="center-v cont-modal">
+    <div class="container text-bg-light p-3 vtn-modal center-t">
+      ¡Venta procesada!
+      <button class="close-modal">Cerrar</button>
+    </div>
   </div>
+  
   <!-- Ficha clientes -->
   <div id="cont-clientesM" class="center-v cont-modal">
     <div class="container text-bg-light p-3 vtn-modal">
@@ -247,7 +276,6 @@
                 <th scope="col">Id</th>
                 <th scope="col">Identificación</th>
                 <th scope="col">Nombre</th>
-                <th scope="col">Acciones</th>
               </tr>
             </thead>
             <tbody id="body-tCliente" class="table-group-divider">
@@ -255,10 +283,6 @@
                 <th scope="row">1</th>
                 <td>Mark</td>
                 <td>Otto</td>
-                <td>
-                  <button class="btn btn-info btn-sm">Editar</button>
-                  <button class="btn btn-danger btn-sm">Eliminar</button>
-                </td>
               </tr>
             </tbody>
           </table>
@@ -372,7 +396,6 @@
                 <th scope="col">Id</th>
                 <th scope="col">Identificación</th>
                 <th scope="col">Nombre</th>
-                <th scope="col">Acciones</th>
               </tr>
             </thead>
             <tbody id="body-tVend" class="table-group-divider">
@@ -380,10 +403,6 @@
                 <th scope="row">1</th>
                 <td>Mark</td>
                 <td>Otto</td>
-                <td>
-                  <button class="btn btn-info btn-sm">Editar</button>
-                  <button class="btn btn-danger btn-sm">Eliminar</button>
-                </td>
               </tr>
             </tbody>
           </table>

@@ -16,6 +16,7 @@ $(function() {
       $('#crearCliente').hide();
       $('#cont-busqProductosM').hide();
       $('#cont-selVendedorM').hide();
+      $('#cont-estadisticasM').hide();
    }
 
 
@@ -136,8 +137,46 @@ $(function() {
        $('#crearCliente').trigger('reset');
     });
  
-
-
+    
+    $('#btn-navEst').on('click', function () {
+      $('#cont-estadisticasM').show();
+      var idvend = document.getElementById('btn-navVend').getAttribute('vendId');
+      $.post('db_php/estadisticas/estadisticas.php', (response) => {
+         const valores = JSON.parse(response);
+         var template= '';
+         valores.forEach(e => {
+            template += `
+               <button class="btn btn-success" disabled type="button">'${e.descripcion}'</button>
+            `;
+         });
+            
+         document.getElementById('masvend').innerHTML += template;
+         console.log(response);
+         
+      });
+      $.post('db_php/estadisticas/numVentas.php', {idvend},(response) => {
+         const valores = JSON.parse(response);
+         
+         valores.forEach(valor => {
+            console.log(valor.totales);
+            document.getElementById('txtVentasNum').value = valor.totales;
+         });
+      });
+      $.post('db_php/estadisticas/totalVentas.php', {idvend},(response) => {
+         const valores = JSON.parse(response);
+         console.log(valores);
+         valores.forEach(valor => {
+            console.log(valor.totales);
+            document.getElementById('txtMasVend').value = valor.procesadas;
+         });
+      });
+    });
+    
+    $(document).on('click', '.btn-cancel',(e) =>{
+       $('#crearCliente').hide();
+       $('#btnc-Cliente').show();
+       $('#crearCliente').trigger('reset');
+    });
    
 
 });

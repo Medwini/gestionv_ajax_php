@@ -72,12 +72,14 @@ $(function () {
         var idvend = document.getElementById('btn-navVend').getAttribute('vendId');
         $.post('db_php/Ventas/eliminarCesta.php', {idvend}, (response) => {
             consultarVentaVendedor(idvend);
+            $.post('db_php/Ventas/crearVentaVendedor.php', {idvend}, (response) => {
+
+            });
         });
     });
 
     function consultarVentaVendedor(idvend) {
         $.post('db_php/Ventas/consultaVentasVendedor.php', {idvend}, (response) => {
-            console.log(response);
             const ventas_det = JSON.parse(response);
             let template = '';
             if(ventas_det.length > 0){

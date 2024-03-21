@@ -116,10 +116,6 @@ $(function () {
                     <td>${cliente.nombre}</td>
                     <td>${cliente.telefono}</td>
                     <td>${cliente.direccion}</td>
-                    <td>
-                      <button FpId="${cliente.idcliente}" class="btn btn-info btn-sm">Editar</button>
-                      <button FpId="${cliente.idcliente}" class="btn btn-danger btn-sm">Eliminar</button>
-                    </td>
                   </tr>
                   `
           });
