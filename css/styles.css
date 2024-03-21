@@ -96,3 +96,8 @@ form{
     /* border-top: 1px solid var(--principal);
     border-bottom: 1px solid var(--principal); */
 }
+
+.tabla-cesta{
+    overflow-y: auto;
+    height: 60vh;
+}

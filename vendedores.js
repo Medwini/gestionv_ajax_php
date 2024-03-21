@@ -82,7 +82,6 @@ $(function () {
           vend.innerText = vendedor.nombre;
           var idvend=vendedor.idvendedor;
           $.post('db_php/Ventas/consultaVentasVendedor.php', {idvend}, (response) => {
-            console.log(response);
             const ventas_det = JSON.parse(response);
             let template = '';
             if(ventas_det.length > 0){
@@ -112,7 +111,7 @@ $(function () {
               });
             }else{
               $.post('db_php/Ventas/crearVentaVendedor.php', {idvend}, (response) => {
-                console.log(response);
+
               });
             };
             

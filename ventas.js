@@ -14,14 +14,12 @@ $(function () {
     // Obtener venta
     function obtenerVenta(idvend) {
         obtenerIdVend();
-        console.log(idvend);
     };
 
-    $(document).on('change', '.inp-cantP', (e) => {
+    $(document).on('keyup', '.inp-cantP', (e) => {
         var idProdDet = $(this)[0].activeElement.parentNode.parentNode.getAttribute('prodDetId');
         var CantProdDet = $(this)[0].activeElement.value;
         var idventa_det = $(this)[0].activeElement.parentNode.parentNode.getAttribute('ventDetId');
-        console.log(idventa_det);
 
         const postData = {
             idProdDet: idProdDet,
@@ -30,7 +28,6 @@ $(function () {
         };
         $.post('db_php/Ventas/actCantSolicitada.php', postData, (response) => {
             const mensajes = JSON.parse(response);
-            console.log(mensajes.mensaje);
             if(mensajes.mensaje == 1){
                 var valor_cant = $(this)[0].activeElement.parentNode.parentNode.childNodes[9].childNodes[0].value;
                 var valor_precio = $(this)[0].activeElement.parentNode.parentNode.childNodes[5].innerText;
@@ -38,12 +35,8 @@ $(function () {
                 monto_subTotal = valor_precio * valor_cant;
                 var monto_totalProd = '';
                 monto_totalProd = monto_subTotal * 1.16;
-                console.log(monto_subTotal);
-                console.log(monto_totalProd);
                 var camp_monto = $(this)[0].activeElement.parentNode.parentNode.childNodes[11];
                 var camp_totalProd = $(this)[0].activeElement.parentNode.parentNode.childNodes[15];
-                console.log(camp_totalProd);
-                console.log(camp_monto);
                 camp_monto.innerText = monto_subTotal;
                 camp_totalProd.innerText = monto_totalProd;
             }else{
@@ -60,8 +53,6 @@ $(function () {
     $(document).on('click', '.btn-elDetProd', (e) => {
         const idprod = $(this)[0].activeElement.parentNode.parentNode.getAttribute('prodDetId');
         const idventa_det = $(this)[0].activeElement.parentNode.parentNode.getAttribute('ventDetId');
-        console.log(idprod);
-        console.log(idventa_det);
         const postData = {
             idprod: idprod,
             idventa_det: idventa_det
@@ -69,7 +60,6 @@ $(function () {
         $.post('db_php/Ventas/eliminarProductoCesta.php', postData, (response) => {
             var idvend = document.getElementById('btn-navVend').getAttribute('vendId');
             $.post('db_php/Ventas/consultaVentasVendedor.php', {idvend}, (response) => {
-                console.log(response);
                 const ventas_det = JSON.parse(response);
                 let template = '';
                 if(ventas_det.length > 0){
@@ -97,7 +87,7 @@ $(function () {
                           `
                   });
                 }else{
-                  console.log('nadita');
+
                 };
                 
                 $('#body-tDetVenta').html(template);

@@ -160,7 +160,7 @@ $(function () {
                       `
               });
             }else{
-              console.log('nadita');
+
             };
             
             $('#body-tDetVenta').html(template);
