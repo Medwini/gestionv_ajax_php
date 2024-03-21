@@ -1,39 +1,43 @@
 $(function () {
-    obtenerProductos();
-  
-    // Crear formas de pago
-    $('#crearProducto').submit(e => {
-      e.preventDefault();
-      const postData = {
-        codbarra: $('#codBarra_Prod').val(),
-        descripcion: $('#desc_Prod').val(),
-        costo_base: $('#costoB_Prod').val(),
-        rentabilidad: $('#rent_Prod').val(),
-        precio_base: $('#precioB_Prod').val(),
-        cantidad: $('#cant_Prod').val(),
-        descuento: $('#descuento_Prod').val()
-      };
-      $.post('db_php/Productos/crearProducto.php', postData, (response) => {
-        alert(response);
-        $('#crearProducto').trigger('reset');
-  
-      });
-      $('#crearProducto').hide();
-      $('#btnc-Prod').show();
-      obtenerProductos();
+
+  var arrayPrecios = [];
+  var arrayTotal = [];
+  var arrayDescuentos = [];
+  obtenerProductos();
+
+  // Crear formas de pago
+  $('#crearProducto').submit(e => {
+    e.preventDefault();
+    const postData = {
+      codbarra: $('#codBarra_Prod').val(),
+      descripcion: $('#desc_Prod').val(),
+      costo_base: $('#costoB_Prod').val(),
+      rentabilidad: $('#rent_Prod').val(),
+      precio_base: $('#precioB_Prod').val(),
+      cantidad: $('#cant_Prod').val(),
+      descuento: $('#descuento_Prod').val()
+    };
+    $.post('db_php/Productos/crearProducto.php', postData, (response) => {
+      alert(response);
+      $('#crearProducto').trigger('reset');
+
     });
-  
-    // Obtener todos los Productos
-    function obtenerProductos() {
-      $.ajax({
-        url: 'db_php/Productos/consultaProducto.php',
-        type: 'GET',
-        success: function (response) {
-            console.log(response);
-          const productos = JSON.parse(response);
-          let template = '';
-          productos.forEach(producto => {
-            template += `
+    $('#crearProducto').hide();
+    $('#btnc-Prod').show();
+    obtenerProductos();
+  });
+
+  // Obtener todos los Productos
+  function obtenerProductos() {
+    $.ajax({
+      url: 'db_php/Productos/consultaProducto.php',
+      type: 'GET',
+      success: function (response) {
+        console.log(response);
+        const productos = JSON.parse(response);
+        let template = '';
+        productos.forEach(producto => {
+          template += `
                   <tr>
                     <th scope="row">${producto.idproducto}</th>
                     <td>${producto.codbarra}</td>
@@ -48,50 +52,50 @@ $(function () {
                     </td>
                   </tr>
                   `
-          });
-          $('#body-tProd').html(template);
-        }
-      });
-    };
-
-    function actPrecio() {
-      let rentabilidad =  $('#rent_Prod').val();
-      let costo_b = $('#costoB_Prod').val();
-      let desc = $('#descuento_Prod').val();
-      let rent = (100 - rentabilidad)/100;
-      var precioU = costo_b / rent;
-      let precioNU = precioU-(precioU * desc)/100;
-      $('#precioB_Prod').val(precioNU);
-    }
-
-
-    $(document).on('keyup', '#costoB_Prod', (e) => {
-      actPrecio();
+        });
+        $('#body-tProd').html(template);
+      }
     });
+  };
 
-    $(document).on('keyup', '#descuento_Prod', (e) => {
-      actPrecio();
-    });
+  function actPrecio() {
+    let rentabilidad = $('#rent_Prod').val();
+    let costo_b = $('#costoB_Prod').val();
+    let desc = $('#descuento_Prod').val();
+    let rent = (100 - rentabilidad) / 100;
+    var precioU = costo_b / rent;
+    let precioNU = precioU - (precioU * desc) / 100;
+    $('#precioB_Prod').val(precioNU);
+  }
 
-    $(document).on('keyup', '#rent_Prod', (e) => {
-      actPrecio();
-    });
 
-    // Buscar productos
+  $(document).on('keyup', '#costoB_Prod', (e) => {
+    actPrecio();
+  });
 
-    $('#buscador').submit(e => {
-      const descripcion = $(this)[0].activeElement.parentNode.childNodes[1].value;
-      $.post('db_php/Productos/buscarProducto.php', {descripcion}, (response) => {
-        console.log(response);
-        const productos = JSON.parse(response);
-        console.log(productos.length);
-        if(productos.length > 0){
-          var template = '';
-          productos.forEach(producto => {
-            let rent = (100 - producto.rentabilidad)/100;
-            var precioU = producto.costo_base / rent;
-            let precioNU = precioU-(precioU * producto.descuento)/100;
-            template += `
+  $(document).on('keyup', '#descuento_Prod', (e) => {
+    actPrecio();
+  });
+
+  $(document).on('keyup', '#rent_Prod', (e) => {
+    actPrecio();
+  });
+
+  // Buscar productos
+
+  $('#buscador').submit(e => {
+    const descripcion = $(this)[0].activeElement.parentNode.childNodes[1].value;
+    $.post('db_php/Productos/buscarProducto.php', { descripcion }, (response) => {
+      console.log(response);
+      const productos = JSON.parse(response);
+      console.log(productos.length);
+      if (productos.length > 0) {
+        var template = '';
+        productos.forEach(producto => {
+          let rent = (100 - producto.rentabilidad) / 100;
+          var precioU = producto.costo_base / rent;
+          let precioNU = precioU - (precioU * producto.descuento) / 100;
+          template += `
               <div prodSeleId="${producto.idproducto}" class="col">
                 <div class="card" style="width: 10rem;">
                   <button type="button" class="btn btn-outline-success btn-select">Seleccionar</button>
@@ -107,38 +111,43 @@ $(function () {
                 </div>
               </div>
                 `
-          });
-          $('#cont-cardsProducto').html(template);
-        }else{
-          $('#cont-busqProductosM').hide();
-          alert('No existen datos sobre su búsqueda.');
-        }
-      });
+        });
+        $('#cont-cardsProducto').html(template);
+      } else {
+        $('#cont-busqProductosM').hide();
+        alert('No existen datos sobre su búsqueda.');
+      }
     });
+  });
 
-    
-    $(document).on('click', '.btn-select', (e) => {
-      const idproducto = $(this)[0].activeElement.parentNode.parentNode.getAttribute('prodSeleId');
-      var idvend = document.getElementById('btn-navVend').getAttribute('vendId');
-      console.log(idvend);
-      const postData = {
-        idproducto: idproducto,
-        idvend: idvend,
-      };
-      $.post('db_php/Ventas/agregarProducto.php', postData, (response) => {
-        console.log(response);
-        const mensajes = JSON.parse(response);
-        if(mensajes.mensaje == 1){
-          $('#cont-busqProductosM').hide();
-          $.post('db_php/Ventas/consultaVentasVendedor.php', {idvend}, (response) => {
-            console.log(response);
-            const ventas_det = JSON.parse(response);
-            let template = '';
-            if(ventas_det.length > 0){
-              ventas_det.forEach(venta_det => {
-                var monto_subTotal = venta_det.precio_base * venta_det.cantidad;
-                var monto_totalProd = monto_subTotal * 1.16;
-                template += `
+
+  $(document).on('click', '.btn-select', (e) => {
+    const idproducto = $(this)[0].activeElement.parentNode.parentNode.getAttribute('prodSeleId');
+    var idvend = document.getElementById('btn-navVend').getAttribute('vendId');
+    console.log(idvend);
+    const postData = {
+      idproducto: idproducto,
+      idvend: idvend,
+    };
+    $.post('db_php/Ventas/agregarProducto.php', postData, (response) => {
+      const mensajes = JSON.parse(response);
+      if (mensajes.mensaje == 1) {
+        $('#cont-busqProductosM').hide();
+        $.post('db_php/Ventas/consultaVentasVendedor.php', { idvend }, (response) => {
+
+          const ventas_det = JSON.parse(response);
+          let template = '';
+          if (ventas_det.length > 0) {
+            ventas_det.forEach(venta_det => {
+              var monto_subTotal = venta_det.precio_base * venta_det.cantidad;
+              var monto_totalProd = monto_subTotal * 1.16;
+              arrayPrecios.push(monto_subTotal);
+              arrayTotal.push(monto_totalProd);
+              if (venta_det.cantidad > 0) {
+                arrayDescuentos.push(venta_det.descuento);
+              }
+
+              template += `
                     <tr prodDetId="${venta_det.idproducto}" ventDetId="${venta_det.idventa_det}">
                       <th scope="row">
                         <a class="btn-elDetProd" href="#">
@@ -158,21 +167,49 @@ $(function () {
                       <td class="monto_subTotal">${monto_totalProd}</td>
                     </tr>
                       `
-              });
-            }else{
+            });
+          } else {
 
-            };
-            
-            $('#body-tDetVenta').html(template);
+          };
+          actualizarTotales(arrayPrecios, arrayTotal, arrayDescuentos);
+          arrayPrecios = [];
+          arrayTotal = [];
+          arrayDescuentos = [];
 
-          });
-        }else{
-          $('#cont-busqProductosM').hide();
-          alert('El producto ya existe en su lista de venta.');
-        }
-      });
+          $('#body-tDetVenta').html(template);
+
+        });
+      } else {
+        $('#cont-busqProductosM').hide();
+        alert('El producto ya existe en su lista de venta.');
+      }
+
     });
-  
-
-  
   });
+
+  function actualizarTotales(arrayPrecios, arrayTotal, arrayDescuentos) {
+    let ttPrecios = 0.000;
+    let ttTotal = 0.000;
+    let ttDescuentos = 0.000;
+
+    arrayPrecios.forEach(e => {
+      ttPrecios += parseFloat(e);
+    });
+    arrayTotal.forEach(e => {
+      ttTotal += parseFloat(e);
+    });
+    arrayDescuentos.forEach(e => {
+      ttDescuentos += parseFloat(e);
+    });
+
+    document.getElementById('monto_subTotal').innerHTML = ttPrecios;
+    document.getElementById('monto_total').innerHTML = ttTotal;
+    document.getElementById('monto_descuento').innerHTML = ttDescuentos+'%';
+
+    ttPrecios = 0.000;
+    ttTotal = 0.000;
+    ttDescuentos = 0.000;
+  }
+
+
+});

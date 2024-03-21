@@ -58,7 +58,7 @@
     <section id="cont-detVenta">
       <div class="container">
         <div class="tabla-cesta">
-          <table id="listDetVenta"  class="table mletters">
+          <table id="listDetVenta"  class="table table-hover mletters">
             <thead>
               <tr>
                 <th scope="col"></th>
@@ -79,8 +79,35 @@
       </div>
     </section>
   </main>
+
+  <footer class="container">
+    <div id="cont-footer" class="center row-d">
+      <section class="column-d">
+        <button id="btn-formaPago" class="btn btn-outline-danger my-1">Cancelar</button>
+        <button id="btn-formaPago" class="btn btn-outline-success my-1">Procesar</button>
+      </section>
+      <section>
+        <table class="table gmletters center-t">
+          <thead>
+            <tr>
+              <th scope="col">Total base:</th>
+              <th scope="col">Total impuestos:</th>
+              <th scope="col">Total descuentos:</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td id="monto_subTotal"></td>
+              <td id="monto_total"></td>
+              <td id="monto_descuento"></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+  </footer>
   
-  <button id="btn-formaPago" class="">Formas de pago</button>
+
 
   <div id="cont-busqProductosM" class="center-v cont-modal">
     <div class="container text-bg-light p-3 vtn-modal">
@@ -402,7 +429,7 @@
 
   <div id="cont-selVendedorM" class="center-v cont-modal">
     <div class="container text-bg-light p-3 vtn-modal">
-      <h3 class="mletters center">Clientes</h3>
+      <h3 class="mletters center">Vendedores</h3>
       <div id="selVendedor" class="container p-3">
         <button class="close-modal">Cerrar</button>
         <div class="input-group mb-3 my-2">

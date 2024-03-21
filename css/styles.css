@@ -38,6 +38,9 @@
     justify-content: space-between;
 }
 
+.center-t{
+    text-align: center;
+}
 /* BOTONES */
 
 .btn-nuevo{
@@ -100,4 +103,25 @@ form{
 .tabla-cesta{
     overflow-y: auto;
     height: 60vh;
+}
+
+/* FOOTER */
+
+.row-d{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.column-d{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#cont-footer > section:nth-of-type(1){
+    width: 20%;
+}
+
+#cont-footer > section:nth-of-type(2){
+    width: 70%;
 }

@@ -2,6 +2,9 @@ $(function () {
     obtenerVendedores();
     var vend = document.getElementById('btn-navVend');
     vend.innerText = 'Vendedor';
+    var arrayPrecios = [];
+    var arrayTotal = [];
+    var arrayDescuentos = [];
   
     
   
@@ -88,6 +91,11 @@ $(function () {
               ventas_det.forEach(venta_det => {
                 var monto_subTotal = venta_det.precio_base * venta_det.cantidad;
                 var monto_totalProd = monto_subTotal * 1.16;
+                arrayPrecios.push(monto_subTotal);
+                arrayTotal.push(monto_totalProd);
+                if (venta_det.cantidad > 0) {
+                  arrayDescuentos.push(venta_det.descuento);
+                }
                 template += `
                     <tr prodDetId="${venta_det.idproducto}" ventDetId="${venta_det.idventa_det}">
                       <th scope="row">
@@ -116,11 +124,39 @@ $(function () {
             };
             
             $('#body-tDetVenta').html(template);
+            actualizarTotales(arrayPrecios, arrayTotal, arrayDescuentos);
+            arrayPrecios = [];
+            arrayTotal = [];
+            arrayDescuentos = [];
 
           });
         });
         $('#cont-selVendedorM').hide();
       });
     });
+
+    function actualizarTotales(arrayPrecios, arrayTotal, arrayDescuentos) {
+      let ttPrecios = 0.000;
+      let ttTotal = 0.000;
+      let ttDescuentos = 0.000;
+  
+      arrayPrecios.forEach(e => {
+        ttPrecios += parseFloat(e);
+      });
+      arrayTotal.forEach(e => {
+        ttTotal += parseFloat(e);
+      });
+      arrayDescuentos.forEach(e => {
+        ttDescuentos += parseFloat(e);
+      });
+  
+      document.getElementById('monto_subTotal').innerHTML = ttPrecios;
+      document.getElementById('monto_total').innerHTML = ttTotal;
+      document.getElementById('monto_descuento').innerHTML = ttDescuentos+'%';
+  
+      ttPrecios = 0.000;
+      ttTotal = 0.000;
+      ttDescuentos = 0.000;
+    }
   
   });
