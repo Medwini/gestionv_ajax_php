@@ -2,11 +2,9 @@
 
     include('../db.php');
 
-    if(isset($_POST['idProdDet'])) {
-        $idProdDet = $_POST['idProdDet'];
-        $CantProdDet = $_POST['CantProdDet'];
-        $idventa_det = $_POST['idventa_det'];
-        $query = "CALL actualizar_cantVenta('$idProdDet', '$CantProdDet', '$idventa_det', @mensaje);
+    if(isset($_POST['idvend'])) {
+        $idvend = $_POST['idvend'];
+        $query = "CALL eliminar_cesta('$idvend', @mensaje);
         SELECT @mensaje AS mensaje;";
         $result = mysqli_multi_query($connection, $query);
         if (!$result) {

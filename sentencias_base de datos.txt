@@ -118,3 +118,18 @@ BEGIN
 END //
 
 DELIMITER ;
+
+DROP PROCEDURE IF EXISTS eliminar_cesta;
+DELIMITER //
+CREATE PROCEDURE eliminar_cesta(IN idvend INT, OUT mensaje INT(2))
+BEGIN
+	DECLARE idcab INT;
+   
+    SET idcab = (SELECT idventa_cab FROM ventas_cab where idvendedor = idvend);
+       
+    DELETE FROM ventas_det WHERE idventa_cab = idcab;
+    
+    SET mensaje='1';
+END //
+
+DELIMITER ;
