@@ -136,6 +136,7 @@ $(function () {
             let template = '';
             if(ventas_det.length > 0){
               ventas_det.forEach(venta_det => {
+                var monto_subTotal = venta_det.precio_base * venta_det.cantidad;
                 template += `
                     <tr prodDetId="${venta_det.idproducto}" ventDetId="${venta_det.idventa_det}">
                       <th scope="row">
@@ -151,7 +152,7 @@ $(function () {
                       <td>${venta_det.precio_base}</td>
                       <td>${venta_det.cantActual}</td>
                       <td><input type="text" class="inp-cantP" style="border: none; padding: .3rem;" value="${venta_det.cantidad}"></td>
-                      <td class="monto_bCantidad"></td>
+                      <td class="monto_bCantidad">${monto_subTotal}</td>
                       <td></td>
                       <td>${venta_det.impuesto}</td>
                       <td class="monto_subTotal"></td>

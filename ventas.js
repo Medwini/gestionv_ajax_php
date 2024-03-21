@@ -16,7 +16,6 @@ $(function () {
         obtenerIdVend();
         console.log(idvend);
     };
-    
 
     $(document).on('change', '.inp-cantP', (e) => {
         var idProdDet = $(this)[0].activeElement.parentNode.parentNode.getAttribute('prodDetId');
@@ -33,11 +32,18 @@ $(function () {
             const mensajes = JSON.parse(response);
             console.log(mensajes.mensaje);
             if(mensajes.mensaje == 1){
-
+                var valor_cant = $(this)[0].activeElement.parentNode.parentNode.childNodes[9].childNodes[0].value;
+                var valor_precio = $(this)[0].activeElement.parentNode.parentNode.childNodes[5].innerText;
+                var monto_subTotal = valor_precio * valor_cant;
+                
+                var camp_monto = $(this)[0].activeElement.parentNode.parentNode.childNodes[11];
+                camp_monto.innerText = monto_subTotal;
             }else{
                 alert('Valor inválido, no hay suficiente cantidad.');
-                var d = $(this)[0].activeElement;
-                d.value = 0;
+                var inpCant = $(this)[0].activeElement;
+                inpCant.value = 0;
+
+                
             }
 
         });
