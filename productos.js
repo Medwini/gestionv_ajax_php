@@ -33,7 +33,6 @@ $(function () {
       url: 'db_php/Productos/consultaProducto.php',
       type: 'GET',
       success: function (response) {
-        console.log(response);
         const productos = JSON.parse(response);
         let template = '';
         productos.forEach(producto => {
@@ -80,11 +79,11 @@ $(function () {
   $(document).on('keyup', '#rent_Prod', (e) => {
     actPrecio();
   });
-
   // Buscar productos
-
-  $('#buscador').submit(e => {
+    $('#btn-buscarProducto').click(e => {
+    console.log('Aqui estoy');
     const descripcion = $(this)[0].activeElement.parentNode.childNodes[1].value;
+    console.log(descripcion);
     $.post('db_php/Productos/buscarProducto.php', { descripcion }, (response) => {
       console.log(response);
       const productos = JSON.parse(response);
@@ -119,6 +118,8 @@ $(function () {
       }
     });
   });
+
+  
 
 
   $(document).on('click', '.btn-select', (e) => {

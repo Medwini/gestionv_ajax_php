@@ -39,7 +39,6 @@ $(function () {
         url: 'db_php/Vendedores/consultaVendedor.php',
         type: 'GET',
         success: function (response) {
-          console.log(response);
           const vendedores = JSON.parse(response);
           let template = '';
           vendedores.forEach(vendedor => {

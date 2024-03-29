@@ -1,5 +1,4 @@
 $(function() {
-   console.log('Qué maravilla'); 
    valoresDefault();
 
    function valoresDefault() {
@@ -115,9 +114,15 @@ $(function() {
 
       // Mostrar modal de buscar productos
 
-   $('#btn-buscarProducto').on('click', function () {
-     $('#cont-busqProductosM').show();
-   });
+   // $('#btn-buscarProducto').on('click', function () {
+   //   $('#cont-busqProductosM').show();
+   // });
+
+   $('#btn-buscarProducto').on('click', (e) => {
+      $('#cont-busqProductosM').show();
+      e.preventDefault();
+    });
+
    
    $(document).on('click', '.btn-cancel',(e) =>{
       $('#crearCliente').hide();

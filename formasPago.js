@@ -24,7 +24,6 @@ $(function () {
       url: 'db_php/Pagos/consultaFormaPago.php',
       type: 'GET',
       success: function (response) {
-        console.log(response);
         const formasPago = JSON.parse(response);
         let template = '';
         formasPago.forEach(formaPago => {
@@ -55,7 +54,6 @@ $(function () {
 
   $(document).on('change', '.forma-pago', (e) => {
     const idforma_pago = $(this)[0].activeElement.value;
-    console.log(idforma_pago);
     $.post('db_php/Pagos/agregarFormaPago.php', {idforma_pago}, (response) => {
 
     });
@@ -70,7 +68,6 @@ $(function () {
       monto_tt: monto_tt
     };
     $.post('db_php/Pagos/agregarFormaPago.php', postData, (response) => {
-      console.log(response);
       $.post('db_php/Ventas/crearVentaVendedor.php', {idvend}, (response) => {
 
       });
