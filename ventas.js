@@ -35,7 +35,7 @@ $(function () {
                 var valor_cant = $(this)[0].activeElement.parentNode.parentNode.childNodes[9].childNodes[0].value;
                 var valor_precio = $(this)[0].activeElement.parentNode.parentNode.childNodes[5].innerText;
                 var monto_subTotal = valor_precio * valor_cant;
-                var monto_totalProd = monto_subTotal * 1.16;
+                var monto_totalProd = Number((monto_subTotal * 1.16).toFixed(2));
                 var camp_monto = $(this)[0].activeElement.parentNode.parentNode.childNodes[11];
                 var camp_totalProd = $(this)[0].activeElement.parentNode.parentNode.childNodes[15];
                 camp_monto.innerText = monto_subTotal;
